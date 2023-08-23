@@ -1,27 +1,20 @@
 version: 0.0
 os: linux
 file:
-  - source: /app
+  - source: /app/index.html
     destination: /var/www/html
-permissions:
-  -object: /
-   pattern: "*"
-    owner: root
-    group: root
+  - source: source
+    destination: /var/www/html/AppTestCodeDeploy
 hooks:
   ApplicationStop:
     - location: scripts/ApplicationStop.sh
-      timeout: 120
-      runas: root
+      timeout: 180
   BeforeInstall:
     - location: scripts/BeforeInstall.sh
-      timeout: 300
-      runas: root
+      timeout: 180
   AfterInstall:
     - location: scripts/AfterInstall.sh
-      timeout: 30
-      runas: root 
+      timeout: 180
   ApplicationStart:
     - location: scripts/ApplicationStart.sh
       timeout: 120
-      runas: root 
